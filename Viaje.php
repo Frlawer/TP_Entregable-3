@@ -112,14 +112,6 @@ class Viaje
         }
     }
 
-    public function __toString()
-    {
-        return "\nCodigo: " . $this->getCodigo() .
-            "\nDestino: " . $this->getDestino() .
-            "\nCantidad Máxima de pasajeros: " . $this->getCantMaxPasajeros() .
-            "\nResponsable del Viaje: \n" . $this->getResponsable()->__toString() .
-            "\nPasajeros: \n" . $this->listaPasajeros();
-    }
 
     /**
      * Vende un pasaje a el pasajero pasado por parametro
@@ -135,10 +127,10 @@ class Viaje
             $agregoPasajero = $this->nuevoPasajero($pasajero);
             $this->setColPasajeros($agregoPasajero);
             if ($this->getIdaVuelta()) {
-                $importe = $importe + (($importe * 50) / 100);
+                $importe = $importe * 1.5;
             }
         } else {
-            $importe = 0;
+            $importe = -1;
         }
 
         return $importe;
@@ -154,6 +146,15 @@ class Viaje
         $cantPasajeros = count($this->getColPasajeros());
         $maxPasajeros = $this->getCantMaxPasajeros();
         return ($cantPasajeros < $maxPasajeros);
+    }
+
+    public function __toString()
+    {
+        return "\nCodigo: " . $this->getCodigo() .
+            "\nDestino: " . $this->getDestino() .
+            "\nCantidad Máxima de pasajeros: " . $this->getCantMaxPasajeros() .
+            "\nResponsable del Viaje: \n" . $this->getResponsable()->__toString() .
+            "\nPasajeros: \n" . $this->listaPasajeros();
     }
 
     /** ###################'Getters & Setters'#################### */

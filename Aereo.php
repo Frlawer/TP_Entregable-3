@@ -36,17 +36,18 @@ class Aereo extends Viaje
     public function venderPasaje($pasajero)
     {
         $precio = parent::getImporte();
+        $categoria = $this->getCategoria();
+        $escalas = $this->getCantEscalas();
 
-        if ($this->getCategoria() == "1ra Clase") {
-            if ($this->getCantEscalas() == 0) {
-                $precio = $precio + (($precio * 40) / 100);
-                parent::setImporte($precio);
-                $precio = parent::venderPasaje($pasajero);
-            } elseif ($this->getCantEscalas() > 0) {
-                $precio = $precio + (($precio * 60) / 100);
-                parent::setImporte($precio);
-                $precio = parent::venderPasaje($pasajero);
+
+        if ($categoria == "1ra Clase") {
+            if ($escalas > 0) {
+                $precio = $precio * 1.6;
+            } else {
+                $precio = $precio * 1.4;
             }
+            parent::setImporte($precio);
+            parent::venderPasaje($pasajero);
         }
         return $precio;
     }

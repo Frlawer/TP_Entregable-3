@@ -59,6 +59,7 @@ function solicitarNumero($min, $max)
 
 function datosViaje()
 {
+
     $datos = [];
     echo 'Ingrese codigo de viaje: ';
     $datos["codigo"] = trim(fgets(STDIN));
@@ -66,6 +67,8 @@ function datosViaje()
     $datos["destino"] = trim(fgets(STDIN));
     echo 'Capacidad maxima de pasajeros: ';
     $datos["cantMaxPasajeros"] = trim(fgets(STDIN));
+
+
     return $datos;
 }
 
@@ -141,6 +144,14 @@ function cargarPasajero()
     return $persona;
 }
 
+function tipoViaje()
+{
+    echo "¿Viaje Aereo (1) o Terrestre (2) ?";
+    $tipo = trim(fgets(STDIN));
+    if ($tipo = 1) {
+        echo "Tipo de "
+    }
+}
 /**************************************/
 /*********** PROGRAMA PRINCIPAL *******/
 /**************************************/
@@ -166,6 +177,8 @@ do {
                 $viaje->setDestino($datosViaje["destino"]);
                 $viaje->setCantMaxPasajeros($datosViaje["cantMaxPasajeros"]);
                 $viaje->setResponsable($editoResponsable);
+
+                $tipoViaje = tipoViaje();
 
                 echo "¿Cuantos pasajeros cargara? ";
                 $cantidadPasajeros = trim(fgets(STDIN));
